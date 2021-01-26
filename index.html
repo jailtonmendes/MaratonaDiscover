@@ -7,6 +7,9 @@
 
         <link rel="stylesheet" href="style.css">
 
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;1,300;1,700&display=swap" rel="stylesheet">
+
     </head>
     <body>
 
@@ -14,7 +17,7 @@
             <h1 id="logo">dev.finace$</h1>
         </header>
 
-        <main>
+        <main class="container">
 
             <section id="balance">
                 <h2>Balanço</h2>
@@ -29,7 +32,7 @@
                     <p>R$ 2.000,00</p>
                 </div>
 
-                <div class="card">
+                <div class="card total">
                     <h3>Total</h3>
                     <p>R$ 3.000,00</p>
                 </div>
@@ -53,17 +56,21 @@
                     </thead>
                     <tbody>
                         <!--Corpo da Tabela -->
-                        <td>Luz</td>
-                        <td>- R$ 500,00</td>
-                        <td>23/01/20201</td>
-
-                        <td>Criação website</td>
-                        <td>R$ 500,00</td>
-                        <td>23/01/20201</td>
-
-                        <td>LInternetuz</td>
-                        <td>- R$ 200,00</td>
-                        <td>23/01/20201</td>
+                      <tr> 
+                        <td class="description">Luz</td>
+                        <td class="expense">- R$ 500,00</td>
+                        <td class="date">23/01/20201</td>
+                     </tr>
+                     <tr> 
+                        <td class="description">Criação website</td>
+                        <td class="income">R$ 5.000,00</td>
+                        <td class="date">23/01/20201</td>
+                     </tr>  
+                        <td class="description">LInternetuz</td>
+                        <td class="expense">- R$ 200,00</td>
+                        <td class="date">23/01/20201</td>
+                     </tr>
+                        
                     </tbody>
                 </table>
             </section>
