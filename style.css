@@ -116,13 +116,16 @@
 }
 
  /* Table ============ */
- #data-table {
+
+ #transaction {
      display: block;
+     width: 100%;
+     overflow-x: auto;
+ }
+ #data-table {
     width: 100%;
     border-spacing: 0 0.5rem;
-
     color: #969cb3;
-    overflow-x: auto; /**/
  }
 
 /*Colocar borda no first - inicio do 1º elemento*/
@@ -174,6 +177,23 @@ td.expense {
     color: #e92929;
 }
 
+/*Modal ============ */
+.modal-overlay {
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0,0,0,0.7);
+    
+    position: fixed;
+    top: 0;
+}
+
+.modal {
+    background: #f0f2f5;
+    padding: 2.4rem;
+    
+
+}
 
 
 /*Footer ============ */
