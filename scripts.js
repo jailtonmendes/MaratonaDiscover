@@ -93,7 +93,16 @@ const Utils = {
     formatCurrency(value) {
         const signal = Number(value) < 0 ? "_" : ""
 
-        console.log(signal)
+        value = String(value).replace(/\D/g, "")
+
+        value = Number(value) / 100
+
+        value = value.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL"
+        })
+
+        console.log(signal + value)
    }
 }
 
