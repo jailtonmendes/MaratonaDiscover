@@ -44,8 +44,6 @@ const transactions = [
     },
 ]
 
-
-
 const Transaction = {
     all: transactions,
 
@@ -163,23 +161,29 @@ const Utils = {
 
 const Form = {
     description: document.querySelector('input#description'),
-    description: document.querySelector('input#amount'),
-    description: document.querySelector('input#date'),
+    amount: document.querySelector('input#amount'),
+    date: document.querySelector('input#date'),
 
-        formatData() {
-        console.log('Formatar os dados')
+        getValues() {
+            return {
+                description: Form.description.value,
+                amount: Form.amount.value,
+                date: Form.date.value
+            }
         },
+
+              
         validateFields() {
-            console.log('validar os campos')
-        },
+            console.log(Form.getValues())
+        }, 
         submit(event) {
-        console.log(event)
             event.preventDefault()
 
-            //verificar se todas as informações foram preenchidas
             Form.validateFields()
+
+            //verificar se todas as informações foram preenchidas
             //formatar  os dados para salvar
-            Form.formatData()
+            //Form.formatData()
             //salvar
             //apagar os dados do formulário
             //modal feche
@@ -201,6 +205,8 @@ const App = {
         App.init()
     },
 }
+
+
 
 
 App.init()
