@@ -19,25 +19,25 @@ const Modal = {
 
 const transactions = [
     {
-        id: 1,
+        
         description: 'Luz',
-        amount: -50000,
+        amount: -50001,
         date:'23/01/2021',
     },
     {
-        id: 2,
+        
         description: 'Website',
         amount: 500000,
         date:'23/01/2021',
     },
     {
-        id: 3,
+        
         description: 'Internet',
-        amount: -20000,
+        amount: -20012,
         date:'23/01/2021',
     },
     {
-        id: 3,
+        
         description: 'App',
         amount: 200000,
         date:'23/01/2021',
@@ -47,14 +47,53 @@ const transactions = [
 
 
 const Transaction = {
+    all: transactions,
+
+    add(transaction){
+        Transaction.all.push(transaction)
+
+        App.reload()
+    },
+
+    remove(index) {
+        Transaction.all.splice(index, 1)
+
+        App.reload()
+    },
+
     incomes() {
         //somar as entradas
+        let income = 0;
+        //pegar todas as transações
+        //para cada transação,
+       Transaction.all.forEach(transaction => {
+            //se ela for maior que zero
+            if( transaction.amount > 0) {
+                //somar a uma variavel e retornar a variavel
+                income += transaction.amount;
+            }
+        })
+
+        return income;
     },
     expenses() {
         //somar as saídas
+        let expense = 0;
+        //pegar todas as transações
+        //para cada transação,
+        Transaction.all.forEach(transaction => {
+            //se ela for menor que zero
+            if( transaction.amount < 0) {
+                //somar a uma variavel e retornar a variavel
+                expense += transaction.amount;
+            }
+        })
+
+        return expense;
     },
     total() {
         //entrasas - saídas
+        return Transaction.incomes() + Transaction.expenses();
     }
 }
 
@@ -78,7 +117,7 @@ const DOM = {
 
         const html = `
             <td class="description">${transaction.description}</td>
-            <td class="${CSSclass}">${transaction.amount}</td>
+            <td class="${CSSclass}">${amount}</td>
             <td class="date">${transaction.date}</td>
             <td>
             <img src="./assets/minus.svg" alt="Remover transação">
@@ -86,12 +125,28 @@ const DOM = {
      `
 
         return html
+    },
+
+    updateBalance() { //Responsavel pelas formatação do texto R$
+        document
+        .getElementById('incomeDisplay')
+        .innerHTML = Utils.formatCurrency(Transaction.incomes())
+        document
+        .getElementById('expenseDisplay')
+        .innerHTML = Utils.formatCurrency(Transaction.expenses())
+        document
+        .getElementById('totalDisplay')
+        .innerHTML = Utils.formatCurrency(Transaction.total())
+    },
+
+    clearTransactions() {
+        DOM.transactionsContainer.innerHTML = ""
     }
 }
 
 const Utils = {
     formatCurrency(value) {
-        const signal = Number(value) < 0 ? "_" : ""
+        const signal = Number(value) < 0 ? "-" : ""
 
         value = String(value).replace(/\D/g, "")
 
@@ -102,11 +157,52 @@ const Utils = {
             currency: "BRL"
         })
 
-        console.log(signal + value)
+        return signal + value
    }
 }
 
+const Form = {
+    description: document.querySelector('input#description'),
+    description: document.querySelector('input#amount'),
+    description: document.querySelector('input#date'),
 
-transactions.forEach(function(transaction){
-    DOM.addTransaction(transaction)
-})
+        formatData() {
+        console.log('Formatar os dados')
+        },
+        validateFields() {
+            console.log('validar os campos')
+        },
+        submit(event) {
+        console.log(event)
+            event.preventDefault()
+
+            //verificar se todas as informações foram preenchidas
+            Form.validateFields()
+            //formatar  os dados para salvar
+            Form.formatData()
+            //salvar
+            //apagar os dados do formulário
+            //modal feche
+            //Atualizar a aplicação
+    }
+}
+
+const App = {
+    init() {
+        Transaction.all.forEach(transaction => {
+            DOM.addTransaction(transaction)
+        })
+        
+        DOM.updateBalance() 
+
+    },
+    reload() {
+        DOM.clearTransactions()
+        App.init()
+    },
+}
+
+
+App.init()
+
+
