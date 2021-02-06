@@ -174,7 +174,14 @@ const Form = {
 
               
         validateFields() {
-            console.log(Form.getValues())
+            const { description, amount, date } = Form.getValues()
+            
+            if( description.trim() === "" ||
+                amount.trim() === "" ||
+                date.trim() === "") {
+                    throw new Error("Por favor, preencha todos os campos")
+                }
+
         }, 
         submit(event) {
             event.preventDefault()
