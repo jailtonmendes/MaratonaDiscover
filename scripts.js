@@ -204,10 +204,17 @@ const Form = {
             
             if( description.trim() === "" ||
                 amount.trim() === "" ||
+<<<<<<< HEAD
                 date.trim() === "" ) {
                     throw new Error("Por favor, preencha todos os campos")
                 }
              
+=======
+                date.trim() === "") {
+                    throw new Error("Por favor, preencha todos os campos")
+                }
+
+>>>>>>> f32ccac1d6d0b18d943b5f658aad123590679864
         }, 
 
         formatValues() {
